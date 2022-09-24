@@ -1,5 +1,5 @@
 const UsersSchema = (sequelize, DataTypes) => {
-  const UsersTable = sequelize.define('Users', {
+  const UsersTable = sequelize.define('User', {
     id: DataTypes.INTEGER,
     displayName: DataTypes.STRING,
     email: DataTypes.STRING,

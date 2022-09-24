@@ -16,7 +16,7 @@ const PostCategoriesSchema = (sequelize, Daatypes) => {
                 foreignKey: 'categoryId',
                 otherKey: 'postId'
             })
-        }
+        })
 };
 
 module.exports = PostCategoriesSchema;
