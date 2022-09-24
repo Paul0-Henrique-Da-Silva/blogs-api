@@ -7,7 +7,7 @@ const BlogPostSchema = (sequelize, DataTypes) => {
         content: DataTypes.STRING,
         userId: DataTypes.INTERGER,
         published: DataTypes.TIMESTAMP,
-        update: DataTypes.TIMESTAMP,
+        updated: DataTypes.TIMESTAMP,
     },{
         modelname: 'blog_posts',
         underscored: true
