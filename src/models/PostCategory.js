@@ -7,14 +7,14 @@ const PostCategoriesSchema = (sequelize, Daatypes) => {
 
         PostCategoriesSchema.associate = (models) => {
             models.BlogPost.belongsToMany(models.Category, {
-                through: PostCategoriesSchema,
-                foreignKey: 'postId',
-                otherKey: 'categoryId',
+                through: PostCategories, // Parent_Child',
+                foreignKey: 'postId', //  'Parent_parentId',
+                // otherKey: 'categoryId',
             });
             models.Categories.belongsToMany(models.BlogPost, {
-                through: PostCategories,
+                through: PostCategories, 
                 foreignKey: 'categoryId',
-                otherKey: 'postId'
+                // otherKey: 'postId'
             })
         })
 };
