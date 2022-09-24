@@ -1,7 +1,7 @@
 //https://stackoverflow.com/questions/22958683/how-to-implement-many-to-many-association-in-sequelize
 
 const PostCategoriesSchema = (sequelize, Daatypes) => {
-    const PostCategories = sequelize.define('PostCategories', {
+    const PostCategories = sequelize.define('PostCategory', {
             timestamps: false,
         },
 
