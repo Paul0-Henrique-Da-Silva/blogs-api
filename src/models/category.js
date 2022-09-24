@@ -1,4 +1,4 @@
-const CategoryShema = (sequelize, DataTypes) => {
+const CategorySchema = (sequelize, DataTypes) => {
 
     const CategoryTable = sequelize.define('Categories', {
         name: {
@@ -12,4 +12,4 @@ const CategoryShema = (sequelize, DataTypes) => {
     return CategoryTable
 };
 
-module.exports = CategoryShema;
+module.exports = CategorySchema;

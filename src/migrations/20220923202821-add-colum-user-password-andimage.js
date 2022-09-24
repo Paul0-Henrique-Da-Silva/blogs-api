@@ -7,7 +7,7 @@ module.exports = {
         'users',
         'password',
         {
-          allownull: false,
+          allowNull: false,
           type: Sequelize.STRING,
           after: 'email',
         }

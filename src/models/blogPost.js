@@ -1,6 +1,6 @@
 // https://stackoverflow.com/questions/29652538/sequelize-js-timestamp-not-datetime
 
-const BlogPostShema = (sequelize, DataTypes) => {
+const BlogPostSchema = (sequelize, DataTypes) => {
     const BlogPostTablet = sequelize.define('BlogPost', {
         id: DataTypes.INTERGER,
         title: DataTypes.STRING,
@@ -10,8 +10,8 @@ const BlogPostShema = (sequelize, DataTypes) => {
         update: DataTypes.TIMESTAMP,
     });
 
-    BlogPostShema.associete = (models) => {
-        BlogPostShema.belongsTo(models.Users,
+    BlogPostSchema.associete = (models) => {
+        BlogPostSchema.belongsTo(models.Users,
             {
                 as: 'user',
                 foreingKey: 'userId'
@@ -21,4 +21,4 @@ const BlogPostShema = (sequelize, DataTypes) => {
     return BlogPostTablet
 }
 
-module.export = BlogPostShema;
+module.export = BlogPostSchema;
