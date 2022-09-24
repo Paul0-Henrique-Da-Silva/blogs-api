@@ -8,6 +8,7 @@ const CategorySchema = (sequelize, DataTypes) => {
         }
     },
         {
+            modelname: 'categories',
             timestamps: false,
         })
     return CategoryTable

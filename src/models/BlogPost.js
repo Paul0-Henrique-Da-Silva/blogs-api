@@ -8,7 +8,12 @@ const BlogPostSchema = (sequelize, DataTypes) => {
         userId: DataTypes.INTERGER,
         published: DataTypes.TIMESTAMP,
         update: DataTypes.TIMESTAMP,
-    });
+    },{
+        modelname: 'blog_posts',
+        underscored: true
+    }
+    
+    );
 
     BlogPostSchema.associete = (models) => {
         BlogPostSchema.belongsTo(models.User,
