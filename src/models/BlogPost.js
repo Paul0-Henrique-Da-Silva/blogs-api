@@ -24,8 +24,8 @@ const BlogPostSchema = (sequelize, DataTypes) => {
     
     );
    /// or ({ User })
-    BlogPostSchema.associete = (models) => {
-        BlogPostSchema.belongsTo(models.User,
+   BlogPostTable.associete = (models) => {
+    BlogPostTable.belongsTo(models.User,
             {
                 foreingKey: 'userId',
                 as: 'user'
