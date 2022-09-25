@@ -1,29 +1,38 @@
 // https://stackoverflow.com/questions/29652538/sequelize-js-timestamp-not-datetime
 
 const BlogPostSchema = (sequelize, DataTypes) => {
-    const BlogPostTablet = sequelize.define('BlogPost', {
-        id: DataTypes.INTERGER,
+    const BlogPostTable = sequelize.define('BlogPost', {
+        id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
         title: DataTypes.STRING,
         content: DataTypes.STRING,
-        userId: DataTypes.INTERGER,
-        published: DataTypes.TIMESTAMP,
-        updated: DataTypes.TIMESTAMP,
+        userId: {
+            foreignKey: true,
+            type: DataTypes.INTEGER,
+          },
+        published: DataTypes.DATE,
+        updated: DataTypes.DATE,
     },{
-        modelname: 'blog_posts',
+        tableName: 'blog_posts',
+        timestamps: false,
         underscored: true
     }
     
     );
-
+   /// or ({ User })
     BlogPostSchema.associete = (models) => {
         BlogPostSchema.belongsTo(models.User,
             {
-                as: 'user',
-                foreingKey: 'userId'
+                foreingKey: 'userId',
+                as: 'user'
             })
     }
 
-    return BlogPostTablet
+    return BlogPostTable
 }
 
 module.exports = BlogPostSchema;
