@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
-const { User } = require('../models/User');
+const { User } = require('../models');
 
 const userLogin = Joi.object({
     password: Joi.string().required(),
