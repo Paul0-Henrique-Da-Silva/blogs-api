@@ -1,22 +1,21 @@
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
-const { User } = require('../models/User');
+const { User } = require('../models');
 
 // https://stackoverflow.com/questions/48720942/node-js-joi-how-to-display-a-custom-error-messages
 
 const userLogin = Joi.object({
     password: Joi.string().required()
-    .label('Some required fields are missing'),
+    .messages({ 'string.empty': 'Some required fields are missing' }),
     // .error(() => {
     //     return {
     //         message: "Some required fields are missing"
     //     }
     // }),
 
-    email: Joi.string()
-        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
-        .required()
-        .label('Some required fields are missing'),
+    email: Joi.string().required()
+        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required()
+        .messages({ 'string.empty': 'Some required fields are missing' }),
         // .error(() => {
         // return {
         //     message: "Some required fields are missing"
@@ -34,7 +33,7 @@ const login = async ({ email, password }) => {
     try {
         const SECRET = process.env.JWT_SECRET;
         const token = jwt.sign({ data: email }, SECRET, { expiresIn: 3600 });
-        return { code: 200, message: { message: token } };
+        return { code: 200, token };
     } catch (err) {
         console.log(error);
     }
