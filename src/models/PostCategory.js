@@ -1,36 +1,38 @@
-//https://stackoverflow.com/questions/22958683/how-to-implement-many-to-many-association-in-sequelize
+
 const PostCategoriesSchema = (sequelize, DataTypes) => {
-    const PostCategories = sequelize.define('PostCategory', {
-            postId: {
-              type: DataTypes.INTEGER,
-              foreignKey: true,
-            },
-            categoryId: {
-              type: DataTypes.INTEGER,
-              foreignKey: true,
-            },
-          },
-          {
-            tableName: 'posts_categories',
-            timestamps: false,
-            underscored: true,
-
+  const PostCategory = sequelize.define('PostCategory', {
+      postId: {
+         type: DataTypes.INTEGER, 
+         primaryKey: true 
         },
+      categoryId: { 
+        type: DataTypes.INTEGER, 
+        primaryKey: true 
+      },
+  },
+      {
+          timestamps: false,
+          underscored: true,
+          tableName: 'posts_categories'
+      },
+  );
 
-        PostCategories.associate = ({ Category, BlogPost}) => {
-            BlogPost.belongsToMany(models.Category, {
-                through: PostCategories, // Parent_Child',
-                foreignKey: 'postId', //  'Parent_parentId',
-                otherKey: 'categoryId',
-                as: 'blogPosts'
-            });
-            Category.belongsToMany(models.BlogPost, {
-                through: PostCategories, 
-                foreignKey: 'categoryId',
-                otherKey: 'postId',
-                as: 'categories'
-            })
-        })
+  PostCategory.associate = ({ Category, BlogPost}) => {
+    BlogPost.belongsToMany(Category, {
+      through: PostCategory,
+      foreignKey: 'postId',
+      otherKey: 'categoryId',
+      as: 'categories',
+    });
+    Category.belongsToMany(BlogPost, {
+      through: PostCategory,
+      foreignKey: 'categoryId',
+      otherKey: 'postId',
+      as: 'postCategories',
+    });
+  };
+
+  return PostCategory;
 };
 
-module.exports = PostCategoriesSchema;
+module.exports = PostCategoriesSchema
