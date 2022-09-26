@@ -18,13 +18,13 @@ const BlogPostSchema = (sequelize, DataTypes) => {
         updated: DataTypes.DATE,
     },{
         tableName: 'blog_posts',
+        underscored: true,
         timestamps: false,
-        underscored: true
     }
     
     );
    /// or ({ User })
-   BlogPostTable.associete = (models) => {
+   BlogPostTable.associate = (models) => {
     BlogPostTable.belongsTo(models.User,
             {
                 foreingKey: 'user_id',
