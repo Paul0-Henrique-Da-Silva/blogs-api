@@ -11,13 +11,13 @@ const creater = async (request, response) => {
     }
 };
 
-const getUsers = async (_request, response) => {
+const getUsers = async (_request, response, next) => {
     try {
-        const result = await userServices.getUsers()
-        return response.status(200).json(result)
-    } catch (err) {
-        return response.status(500).json('erro services')
-    }
-}
+        const posts = await userServices.getUsers();
+        return response.status(200).json(posts);
+      } catch (error) {
+        next(error);
+      }
+};
 
-module.exports = { creater , getUsers};
+module.exports = { creater, getUsers };

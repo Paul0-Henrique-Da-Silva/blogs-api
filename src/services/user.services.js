@@ -32,10 +32,8 @@ const creater = async ({ displayName, email, password, image }) => {
 };
 
 const getUsers = async () => {
-    const result = await User.findAll({
-        attributes: { exclude: ['password'] }
-});
-    return { code: null, message: result}
-}
+    const users = await User.findAll({ attributes: { exclude: ['password'] } }); // deleta o password - informação sensível
+    return users;
+};
 
 module.exports = { creater, getUsers };
