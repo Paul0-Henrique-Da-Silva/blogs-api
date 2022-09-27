@@ -4,15 +4,16 @@ require('dotenv').config();
 
 
 const checkToken = (request, response, next) => {
-     const { authorization } = request.headers
+     const authHeader  = request.headers[ 'authorization']
+     const token = authHeader && authHeader.split(" ")[1]
     const SECRET = process.env.JWT_SECRET;
 
-    if (!authorization) {
+    if (!token) {
         return response.status(401).json({ message: "Token not found" })
     }
 
     try {
-        jwt.verify(authorization, SECRET)
+        jwt.verify(token, SECRET)
         next()
         }
     catch (error) {
