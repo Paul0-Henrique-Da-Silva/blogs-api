@@ -31,4 +31,11 @@ const creater = async ({ displayName, email, password, image }) => {
     return { code: 201, token };
 };
 
-module.exports = { creater };
+const getUsers = async () => {
+    const result = await User.findAll({
+        // attributes: { exclude: ['password'] }
+});
+    return { code: null, message: result}
+}
+
+module.exports = { creater, getUsers };
